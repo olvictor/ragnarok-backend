@@ -2,21 +2,25 @@ package com.example.ragnarokapi.models.Lojas;
 
 import com.example.ragnarokapi.models.Items.Items;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-
-@Table(name = "vendings")
+@Table
 @Entity(name = "vendings")
 @Getter
 @Setter
-
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Vendings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private Long id;
     private Integer account_id;
     private Integer char_id;
     private String sex;
@@ -31,8 +35,5 @@ public class Vendings {
 
     @OneToMany(mappedBy = "vending")
     private List<Items> items;
-    @Override
-    public String toString() {
-        return " Loja: " + this.title +  " Where : " + this.map + ","+ this.x +","+this.y + " do jogador: " + this.char_id ;
-    }
+
 }
